@@ -64,8 +64,11 @@ These predictors remained stable across missing data simulations.
 ## 🧪 Hypothesis Testing
 - **H₁**: Mean blood pressure differs by appetite status  
 - **Method**: Welch two-sample t-test  
-- **Result**: Significant (p < 0.01)  
+- **Result**: Significant (p < 0.01)
+ <img width="541" height="288" alt="image" src="https://github.com/user-attachments/assets/6c1b837f-0816-4919-85f8-5485ffe581f3" />
+
 - **Robustness**: Significance weakened beyond 30% MCAR missingness
+<img width="602" height="228" alt="image" src="https://github.com/user-attachments/assets/2e39ce99-93db-489b-ad2e-8dd007348568" />
 
 ---
 
@@ -74,6 +77,7 @@ These predictors remained stable across missing data simulations.
 - **Accuracy**: ~96%
 - **ROC AUC**: ~0.99
 - **Sensitivity / Specificity**: Well-balanced
+<img width="704" height="488" alt="image" src="https://github.com/user-attachments/assets/c0cb320b-d29a-46c0-8823-2f6d67a21b93" />
 
 ---
 
