@@ -1,142 +1,117 @@
 # 🩺 Project Name: Chronic Kidney Disease (CKD) Analysis & Prediction
 
 ## 🔍 Overview
-This project aims to analyze and predict **Chronic Kidney Disease (CKD)** status using clinical and laboratory data.
-The dataset contains real-world medical measurements with substantial missingness, making it suitable for evaluating
-**statistical inference, predictive modeling, and robustness under different missing data mechanisms**.
+This project analyzes and predicts **Chronic Kidney Disease (CKD)** using clinical and laboratory measurements.
+The dataset reflects real-world medical data with substantial missingness, making it suitable for studying:
 
-The project was completed as a **final project for AMS 572 (Stony Brook University)** and emphasizes
-both **statistical interpretability** and **model stability**, rather than black-box prediction alone.
+- Statistical inference under missing data
+- Model robustness (MCAR / MNAR)
+- Interpretability-focused clinical modeling
+
+This project was conducted by **three students at Stony Brook University**
+with a shared interest in **data analysis and healthcare analytics**.
+The emphasis is placed on **statistical interpretability and robustness** rather than black-box prediction.
+
+---
+
+## 📊 Key Visual Summary
+
+### 1️⃣ CKD Status Distribution
+<img width="657" height="468" alt="image" src="https://github.com/user-attachments/assets/1821c6d1-9732-4c2e-ba0c-ac919883e2ab" />
+
+
+- The dataset shows a clear separation between CKD and non-CKD groups.
+- Class imbalance was handled during model evaluation.
+
+---
+
+### 2️⃣ Correlation Heatmap of Numerical Features
+<img width="521" height="488" alt="image" src="https://github.com/user-attachments/assets/b272900e-c916-4708-9935-ccf4ced1aece" />
+
+
+- Strong correlations observed among clinical lab variables.
+- Used as a diagnostic tool for multicollinearity and variable selection.
+
+---
+
+### 3️⃣ ROC Curve – Final Logistic Regression Model
+<img width="658" height="468" alt="image" src="https://github.com/user-attachments/assets/e8da426e-706f-4f0b-abf2-9c5d9ebfeae0" />
+
+
+- Excellent discrimination between CKD and non-CKD patients.
+- ROC AUC ≈ **0.99**, indicating strong predictive performance.
 
 ---
 
 ## 📈 Results and Key Insights
 
-### 🔑 Important Predictors of CKD
-- **Blood Glucose (bgr)**  
-  Higher random blood glucose levels were strongly associated with increased CKD risk.
-- **Hemoglobin (hemo)**  
-  Lower hemoglobin levels significantly increased the probability of CKD.
-- **Specific Gravity (sg)**  
-  Lower urine specific gravity values were associated with kidney dysfunction.
+### 🔑 Important Predictors
+- **Blood Glucose (bgr)**: Higher values → higher CKD risk
+- **Hemoglobin (hemo)**: Lower values → higher CKD probability
+- **Specific Gravity (sg)**: Lower urine concentration → kidney dysfunction
 
-> These variables remained stable predictors even under simulated missing data scenarios.
+These predictors remained stable across missing data simulations.
 
 ---
 
-### ⚠️ Statistical Modeling Insight: Separation Issue
-- The variable **Albumin (al)** exhibited **quasi-complete separation** with respect to CKD status.
-- Including this variable caused instability in logistic regression estimates.
-- **Decision**: Albumin was excluded from the final model to preserve inferential validity.
+### ⚠️ Statistical Issue: Quasi-Complete Separation
+- **Albumin (al)** showed quasi-complete separation
+- Caused unstable logistic regression estimates
+- Excluded from final model to preserve inferential validity
 
 ---
 
-### 🧪 Hypothesis Testing Result (H₁)
-- **Hypothesis**: Mean blood pressure differs by appetite status.
-- **Method**: Welch two-sample t-test
-- **Result**: Statistically significant difference observed (p < 0.01).
-- **Robustness**: The significance weakened as missingness increased beyond 30% under MCAR.
+## 🧪 Hypothesis Testing
+- **H₁**: Mean blood pressure differs by appetite status  
+- **Method**: Welch two-sample t-test  
+- **Result**: Significant (p < 0.01)  
+- **Robustness**: Significance weakened beyond 30% MCAR missingness
 
 ---
 
-## 📊 Model Performance
-
-- **Final Model**: Logistic Regression (3 predictors)
+## 📉 Model Performance
+- **Model**: Logistic Regression (interpretable, low-dimensional)
 - **Accuracy**: ~96%
 - **ROC AUC**: ~0.99
-- **Sensitivity / Specificity**: Both high and well-balanced
-
-The model demonstrated strong discriminative ability and robustness under MCAR and MNAR simulations.
+- **Sensitivity / Specificity**: Well-balanced
 
 ---
 
-## 📋 Table of Contents
+## 📋 Workflow
 1. Data Preprocessing  
 2. Exploratory Data Analysis (EDA)  
 3. Hypothesis Testing  
 4. Logistic Regression Modeling  
 5. Missing Data Simulation (MCAR / MNAR)  
-6. Model Evaluation & ROC Analysis  
-7. Conclusion & Future Work  
+6. Model Evaluation (ROC)  
 
 ---
 
-## 🛠️ 1. Data Preprocessing
-- Replaced invalid entries with NA
-- Converted categorical variables using dummy encoding
-- Standardized numeric variables
-- Applied **KNN Imputation (k = 5)** for missing values
-- Removed variables with modeling instability
-
----
-
-## 📊 2. Exploratory Data Analysis (EDA)
-- Target variable distribution (CKD vs non-CKD)
-- Missingness patterns by variable
-- Correlation analysis among numerical features
-- Visual diagnostics for separation and outliers
-
----
-
-## 🔧 3. Model Building
-We focused on **interpretable statistical modeling** rather than black-box prediction.
-
-- Logistic Regression
-- Variance Inflation Factor (VIF) diagnostics
-- Stepwise AIC-based variable selection
-- Separation diagnostics and correction
-
----
-
-## 📉 4. Missing Data Robustness Analysis
-To assess inferential stability, we simulated missingness under:
-
-- **MCAR** (10%–50%)
-- **MNAR** (value-dependent missingness)
-
-Model coefficients and predictive performance remained stable across scenarios,
-demonstrating robustness of the final model.
-
----
-
-## 📈 5. ROC Curve Visualization
-
-<img width="635" height="473" alt="image" src="https://github.com/user-attachments/assets/93c2df2a-b9c0-41d5-852d-49787ec441ed" />
-
-
-The ROC curve shows excellent discrimination capability of the final logistic model.
-
----
-
-## 📝 6. Conclusion
-This project demonstrates that:
-- Thoughtful variable selection is critical in clinical modeling
-- Statistical diagnostics (e.g., separation, multicollinearity) matter
-- Simple, interpretable models can outperform complex approaches when properly validated
-- Robustness to missing data is essential in healthcare analytics
+## 🛠️ Data Processing Highlights
+- Invalid entries replaced with NA
+- Dummy encoding for categorical variables
+- Standardization of numeric variables
+- KNN Imputation (k = 5)
+- VIF and separation diagnostics applied
 
 ---
 
 ## 🔮 Future Work
-- External validation on independent CKD datasets
-- Extension to survival analysis for CKD progression
-- Comparison with penalized regression methods (LASSO / Ridge)
+- External dataset validation
+- Penalized regression comparison (LASSO / Ridge)
+- Survival analysis for CKD progression
 
 ---
 
-##  Team Members
+## 👥 Team Members
 - **Alan Rodriguez**  
-  Stony Brook University
-  Applied Mathematics & Statistics (AMS)
+  Stony Brook University – Applied Mathematics & Statistics
 
-  - **Xiaoyan Lin**  
-  Stony Brook University
-  Applied Mathematics & Statistics (AMS)
+- **Xiaoyan Lin**  
+  Stony Brook University – Applied Mathematics & Statistics
 
 - **Yeonbi Han**  
-  Stony Brook University  
-  Applied Mathematics & Statistics (AMS)
-
+  Stony Brook University – Applied Mathematics & Statistics
 
 ---
 
@@ -150,4 +125,8 @@ CKD_Chronic/
 ├── chronic_kidney_disease_targets.csv
 ├── ckd_analysis_results.html
 ├── Report_CKD.pdf
+├── figures/
+│   ├── ckd_target_distribution.png
+│   ├── ckd_correlation_heatmap.png
+│   └── ckd_roc_curve.png
 └── README.md
